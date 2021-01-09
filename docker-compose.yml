@@ -1,0 +1,9 @@
+version: "3.7"
+services:
+  streamlit:
+    build: .
+    command: "streamlit run src/projeto_1.py"
+    ports:
+      - "8501:8501"
+    volumes:
+      - "./src:/usr/src/app/src"

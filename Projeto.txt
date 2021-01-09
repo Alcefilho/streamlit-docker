@@ -1,0 +1,1 @@
+ Esse projeto consiste em usar a biblioteca Streamlit e fazer uma aplicação web onde o usuario conseguie monitorar uma ação 
