@@ -4,3 +4,4 @@ altair
 vega-datasets
 seaborn
 yfinance 
+plotly
