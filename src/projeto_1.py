@@ -50,7 +50,7 @@ with col1:
     st.write("""
         ## Volume Price
         """)
-    st.area_chart(tickerDf.Volume)
+    st.area_chart(tickerDf.Close)
 
 with col2:
     ######################################################
@@ -70,6 +70,7 @@ with col2:
     ######################################################
 
     #datraframe
+
     df = pd.DataFrame(np.random.randn(200, 3),columns=['a', 'b', 'c'])
 
     #grafico
@@ -77,15 +78,44 @@ with col2:
         x='a', y='b', size='c', color='c', tooltip=['a', 'b', 'c'])
 
     st.write(c)
-    ########################################################
-
-    fig = go.Figure(data=go.Bar(y=[2, 3, 1]))
-
-    st.write(fig)
 
     ##################################################
 
+    #>>>>>>>>> Gráficos de Linha com área embaixo da curva <<<<<<<<<#
 
+    fig4 = go.Figure(
+        data=[go.Scatter(y=tickerDf.Close,x= tickerDf,line=dict(color="crimson"),fill='tozeroy',text=tickerDf.Close,
+                        mode="lines+markers+text",
+                        texttemplate='%{text:.0f}'+' $',
+                        textposition="top center",
+                        textfont=dict(
+                            family="Helvetica, monospace",
+                            size=11,
+                            color="black"
+        ))],
+        layout=dict(title={'text': "Valores da fechamento das ações do google ",'y':0.90,'x':0.5,'xanchor': 'center','yanchor': 'top'},
+                    yaxis_range = [1000,tickerDf.Close.max()+100],
+                    xaxis_tickangle=0,width=900,
+                    yaxis_showticklabels=False,
+                    xaxis_range = [-0.5,11.4], # Para colocar o tamanho do conteudo do grafico no eixo x
+                    xaxis_showgrid=False,
+                    yaxis_showgrid=False, 
+                )
+    )
+
+    fig4.update_yaxes(nticks=10)
+    fig4.update_xaxes(ticks="outside", tickwidth=0.8, tickcolor='firebrick', ticklen=0.05)
+
+    fig4.update_layout(
+        font_family="Helvetica, monospace",
+        title_font_family="Helvetica, monospace",
+        title_font_size=22,
+        paper_bgcolor='rgba(0,0,0,0)',
+        plot_bgcolor='rgba(0,0,0,0)'
+    )
+
+    st.write(fig4)
+  
 #col1, col2, col3, col4  = st.beta_columns(4)
 
 #original = Image.open(image)
